@@ -81,6 +81,35 @@ npm test
 
 Keep the test port different from any ongoing preview (and from the original v0.1.0 server on 5173). Install dependencies only when setting up a checkout; `npm ci` restores the lockfile versions. Install Chromium if Playwright reports a missing browser.
 
+## Cloudflare hosting
+
+The app only needs static hosting. Both Cloudflare Pages and Workers Static Assets can serve it; neither requires a backend, database, or application server.
+
+First push the branch containing the actual application. The committed 17-game release is on `brflynn-microsoft-miniminds-game-expansion`, not necessarily on the repository's `main` branch. Select that branch as the deployment source until the release is merged into `main`. A repository containing only README/license files cannot build the app. The Cloudflare project root must be the repository root, where `package.json` lives.
+
+### Workers (the `npx wrangler deploy` flow)
+
+The checked-in `wrangler.json` tells Wrangler to run the strict Vite build and serve `dist`. No Worker script or Vite/Cloudflare plugin is needed for this static-only app. Set the Cloudflare Worker name to `miniminds`, matching the configuration, and keep the deploy command as `npx wrangler deploy`. Use Node.js 22.12+ or 20.19+; dependency installation must complete before deployment.
+
+Cloudflare can install dependencies from the repository's manifest and lockfile. If its build settings require an explicit install step, use `npm ci`. Leave a separate build command empty when Wrangler runs the configured build, or use `npm run build` there if a duplicate build is acceptable. Do not publish `src` or commit generated `dist` files.
+
+Local commands:
+
+```powershell
+npm ci
+npx wrangler deploy --dry-run
+```
+
+The dry run builds and validates the deployment without publishing it. An actual `npx wrangler deploy` additionally requires Cloudflare authentication and intentionally publishes the site; it is not part of `npm test`.
+
+### Pages (the Git-connected static-site flow)
+
+Import the repository as a **Pages** project, choose the application branch, set the build command to `npm run build`, and set the output directory to `dist`. Pages handles dependency installation and publication; it does not need a Wrangler deploy command and ignores the Worker configuration for this build flow.
+
+For either option, a push to the configured branch can trigger a new build. No additional GitHub Action is required for Cloudflare's Git integration. GitHub Actions can separately run build/browser checks before merging releases. Feature branches should not accidentally change the production source branch.
+
+A hosted URL is public unless access restrictions are explicitly configured. Keep a family-only pilot behind an access gate; an unlisted URL and the grown-up panel are not authentication. Browser-local stats, if added later, would be separate from host access logs and would not require a hosted database.
+
 ## Family pilot boundaries
 
 The app has no backend or authentication. "Private" means locally hosted, not access-controlled. The grown-up panel uses a three-second hold as a child-oriented interaction gate, not a security boundary.
@@ -91,4 +120,4 @@ The pilot has no timers, penalties, purchases, external links in the child exper
 
 Money games use pretend dollars only. Moving a token is reversible; children must move the requested amount before answering what remains. Toy Shop checks an exact token payment, while Can I Buy It? treats equal funds as enough and includes less/more and empty-wallet cases. Stars acknowledge the math, not how much a child gives, keeps, or spends. No real currency is transferred, no shopping links exist, and no family financial information is requested.
 
-Before any public launch, add appropriate access control and hosting, review children's privacy obligations in the intended markets, conduct accessibility and child usability testing, and decide on a data-minimization policy before introducing profiles or saved progress. No public deployment is included in this pilot.
+Before any public launch, add appropriate access control and hosting, review children's privacy obligations in the intended markets, conduct accessibility and child usability testing, and decide on a data-minimization policy before introducing profiles or saved progress. Deployment configuration is included, but this task has not published a public site.
