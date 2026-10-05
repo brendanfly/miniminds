@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight, BookOpen, Check, ChevronRight, FlaskConical, Flo
 import { GardenArt, PictureArt } from './Art';
 import { AnswerChoices, CountObjects, RoundFooter, RoundIntro, speak, useRoundFeedback } from './GameUI';
 import { KindergartenGame } from './KindergartenGames';
+import { ExpansionGame, isExpansionGame } from './ExpansionGames';
+import { ExpansionCardArt } from './ExpansionArt';
 import { colorRecipes, countChoices, countRounds, filterGames, games, letterRounds, stages, startingDifficulty, type Category, type Difficulty, type GameId, type StageFilter } from './games';
 
 const palette = [
@@ -102,7 +104,7 @@ export default function App() {
                 <div className="card-copy"><span className="card-category">{game.category}</span><h3>{game.title}</h3><p>{game.subtitle}</p><span className="card-bottom">{game.subject === 'coloring' ? <Paintbrush size={14} /> : game.subject === 'reading' ? <BookOpen size={14} /> : game.subject === 'money' ? <Wallet size={14} /> : <Shapes size={14} />} {game.invitation}<ChevronRight size={16} /></span></div>
               </button>)}
             </div>
-            {visibleGames.length === 0 && <div className="empty-catalog"><Sprout size={34} /><h3>{category === 'science' ? 'A little science is growing' : 'More adventures are growing'}</h3><p>{category === 'science' ? "Science games are on our idea list, but aren't playable yet." : 'There are no games for this subject and stage yet. Try another stage or explore all subjects.'}</p><button className="secondary-button" onClick={() => { setCategory('all'); setStage('all'); }}>Show every adventure <ArrowRight size={17} /></button></div>}
+            {visibleGames.length === 0 && <div className="empty-catalog"><Sprout size={34} /><h3>More adventures are growing</h3><p>There are no games for this subject and stage yet. Try another stage or explore all subjects.</p><button className="secondary-button" onClick={() => { setCategory('all'); setStage('all'); }}>Show every adventure <ArrowRight size={17} /></button></div>}
           </section>
 
           <section className="kind-banner" aria-label="Our approach">
@@ -115,7 +117,7 @@ export default function App() {
           <div className="game-heading"><div className="eyebrow">YOUR LITTLE ADVENTURE</div><h1 id="game-title" ref={titleRef} tabIndex={-1}>{selectedGame.title}</h1><p className="skill-note">{selectedGame.skills.join(' / ')}</p></div>
           <div className="difficulty-controls" role="group" aria-label="Choose game difficulty">{(['gentle', 'growing'] as const).map(mode => <button key={mode} aria-pressed={difficulty === mode} onClick={() => setDifficulty(mode)}>{selectedGame.modes[mode].label}</button>)}</div>
           <p className="difficulty-note">{selectedGame.modes[difficulty].description} <span>Changing difficulty restarts this activity, not your stars.</span></p>
-          {activeGame === 'coloring' ? <ColoringGame key={difficulty} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} /> : activeGame === 'letters' || activeGame === 'numbers' ? <LearningGame key={`${activeGame}-${difficulty}`} kind={activeGame} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} /> : <KindergartenGame key={`${activeGame}-${difficulty}`} kind={activeGame} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} />}
+          {activeGame === 'coloring' ? <ColoringGame key={difficulty} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} /> : activeGame === 'letters' || activeGame === 'numbers' ? <LearningGame key={`${activeGame}-${difficulty}`} kind={activeGame} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} /> : isExpansionGame(activeGame) ? <ExpansionGame key={`${activeGame}-${difficulty}`} kind={activeGame} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} /> : <KindergartenGame key={`${activeGame}-${difficulty}`} kind={activeGame} difficulty={difficulty} sound={sound} onCelebrate={() => setStars(s => s + 1)} />}
         </section>}
       </main>
 
@@ -126,6 +128,7 @@ export default function App() {
 }
 
 function CardArt({ game }: { game: GameId }) {
+  if (isExpansionGame(game)) return <ExpansionCardArt game={game} />;
   if (game === 'coloring') return <div className="coloring-preview"><span className="art-blob" /><PictureArt picture="flower" /><PictureArt picture="butterfly" /><span className="crayon crayon-one" /><span className="crayon crayon-two" /><span className="tiny-spark">+</span></div>;
   if (game === 'letters') return <div className="letter-preview"><span className="letter-block block-a">A<span className="block-face">..</span></span><span className="letter-block block-b">b<span className="block-face">..</span></span><span className="letter-block block-c">c</span><span className="tiny-spark">+</span></div>;
   if (game === 'word-builder') return <div className="pack-preview word-builder-preview"><PictureArt picture="cat" /><div className="preview-word-tiles"><span>c</span><span>a</span><span>t</span></div><span className="tiny-spark">+</span></div>;
@@ -253,7 +256,7 @@ function ParentPanel({ onClose }: { onClose: () => void }) {
     {!unlocked ? <><p>This corner is just for you. Hold the button for 3 seconds to come in.</p><button className={`primary-button parent-hold ${holding ? 'holding' : ''}`} onPointerDown={event => { event.currentTarget.setPointerCapture(event.pointerId); startHolding(); }} onPointerUp={stopHolding} onPointerCancel={stopHolding} onLostPointerCapture={stopHolding} onKeyDown={event => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); startHolding(); } }} onKeyUp={stopHolding} onBlur={stopHolding} onContextMenu={event => event.preventDefault()}>{holding ? 'Keep holding...' : 'Hold to open'} <LockKeyhole size={17} /></button></> : <div className="parent-details">
       <p>MiniMinds is a family-made playground for ages 3-7, designed for short, relaxed moments together.</p>
       <h3>Play at their pace</h3><p>Learning-stage filters are suggestions, not age restrictions. Little Explorers starts with gentler modes. Kindergarten Crew adds word building, familiar words, adding, and pretend dollars. Growing Thinkers starts with more challenging modes. Every game lets you change difficulty; doing so restarts the activity, but keeps the tab's stars. There are no timers, penalties, or competitive scores.</p>
-      <h3>Learn together</h3><p>Reading games practice letter shapes, spelling, and familiar words; they are not a full phonics curriculum. Money games use pretend one-dollar tokens, never real payments. Science and platforming adventures are still ideas, not playable games.</p>
+      <h3>Learn together</h3><p>Reading games practice letter names and shapes, spelling, familiar words, and short sentence order; they are not a full phonics curriculum. Money games use pretend one-dollar tokens, never real payments. Science games let children predict, test, and observe simplified plant growth and floating experiments. Real plants do not grow instantly, and material and form matter in water. Paint mixing uses an explicit simplified model, not a rule for all real pigments. Platforming adventures remain proposed ideas.</p>
       <h3>Private by design</h3><p>This prototype has no accounts, ads, analytics, or uploads. Pictures and happy stars live only in this tab and reset when it reloads. Optional spoken prompts use your browser's speech service, which may depend on your device or browser provider.</p>
       <h3>A family pilot, not a public service</h3><p>There is no sign-in or access control yet. Keep it on your home network. Before a public launch, review children's privacy requirements, accessibility, and hosting security.</p>
       <div className="parent-tip"><Heart size={18} /> Try asking, "What did you discover today?"</div>

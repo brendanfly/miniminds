@@ -5,8 +5,9 @@ export type Category = 'all' | Subject;
 export type Stage = 'explorers' | 'kindergarten' | 'thinkers';
 export type StageFilter = 'all' | Stage;
 export type Difficulty = 'gentle' | 'growing';
-export type GameId = 'coloring' | 'letters' | 'numbers' | 'word-builder' | 'sight-words' | 'addition' | 'give-count';
-export type PackGameId = Exclude<GameId, 'coloring' | 'letters' | 'numbers'>;
+export type ExpansionGameId = 'alphabet-garden' | 'sentence-kitchen' | 'rainbow-mixer' | 'pattern-painter' | 'number-train' | 'take-away-pond' | 'grow-garden' | 'float-sink' | 'toy-shop' | 'can-buy';
+export type PackGameId = 'word-builder' | 'sight-words' | 'addition' | 'give-count';
+export type GameId = 'coloring' | 'letters' | 'numbers' | PackGameId | ExpansionGameId;
 
 export const stages: { id: StageFilter; label: string; age: string; description: string }[] = [
   { id: 'all', label: 'All stages', age: '', description: 'A little adventure for every learner.' },
@@ -24,7 +25,7 @@ type Game = {
   age: string;
   stages: Stage[];
   skills: string[];
-  interaction: 'coloring' | 'matching' | 'word-building' | 'object-manipulation';
+  interaction: 'coloring' | 'matching' | 'word-building' | 'object-manipulation' | 'sequencing' | 'experiment';
   invitation: string;
   defaultDifficulty: Difficulty;
   modes: Record<Difficulty, { label: string; description: string }>;
@@ -79,6 +80,76 @@ export const games: Game[] = [
     stages: ['kindergarten', 'thinkers'], skills: ['subtraction', 'money quantities'],
     interaction: 'object-manipulation', invitation: 'Explore pretend dollars', defaultDifficulty: 'gentle',
     modes: { gentle: { label: 'Dollars to 5', description: 'Move pretend one-dollar tokens and count what remains.' }, growing: { label: 'Dollars to 10', description: 'Explore larger amounts, including an empty wallet.' } },
+  },
+  {
+    id: 'alphabet-garden', title: 'Alphabet Garden', subtitle: 'Let all 26 letter flowers bloom.',
+    subject: 'reading', category: 'LETTER NAMES & PAIRS', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['26 letter shapes', 'uppercase and lowercase'],
+    interaction: 'matching', invitation: 'Grow a letter flower', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Letter shapes', description: 'Match all 26 uppercase English letters, one flower at a time.' }, growing: { label: 'Letter pairs', description: 'Find each uppercase letter\'s lowercase partner.' } },
+  },
+  {
+    id: 'sentence-kitchen', title: 'Silly Sentence Kitchen', subtitle: 'A few words. A little picture story.',
+    subject: 'reading', category: 'WORDS IN ORDER', age: 'Ages 5-7',
+    stages: ['kindergarten', 'thinkers'], skills: ['sentence order', 'sentence meaning'],
+    interaction: 'word-building', invitation: 'Cook a little sentence', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Sentence guide', description: 'Copy an original sentence with reversible word tiles.' }, growing: { label: 'Sentence chef', description: 'Build the requested sentence without a written guide, with one extra word.' } },
+  },
+  {
+    id: 'rainbow-mixer', title: 'Rainbow Mixer', subtitle: 'Two little scoops. A new discovery.',
+    subject: 'coloring', category: 'PRETEND PAINT LAB', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['color names', 'simplified paint mixing'],
+    interaction: 'experiment', invitation: 'Mix pretend paints', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Free mixing', description: 'Explore two equal scoops of red, yellow, or blue pretend paint.' }, growing: { label: 'Mixing recipes', description: 'Discover recipes for orange, green, and purple in our simplified model.' } },
+  },
+  {
+    id: 'pattern-painter', title: 'Pattern Painter', subtitle: 'Spot a pattern. Paint what comes next.',
+    subject: 'coloring', category: 'SHAPES & PATTERNS', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['repeating patterns', 'shape recognition'],
+    interaction: 'matching', invitation: 'Complete a pattern', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Two-part patterns', description: 'Finish repeating AB patterns with labeled shapes and colors.' }, growing: { label: 'Pattern puzzles', description: 'Explore ABC, AAB, and ABB repeating patterns.' } },
+  },
+  {
+    id: 'number-train', title: 'Number Train', subtitle: 'All aboard the counting line!',
+    subject: 'math', category: 'NUMBER ORDER', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['number sequencing', 'missing numbers'],
+    interaction: 'sequencing', invitation: 'Line up the carriages', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Small train', description: 'Tap to arrange sequences of 3-5 carriages, using numbers 1-5.' }, growing: { label: 'Missing carriage', description: 'Find missing numbers in sequences from 1 through 10.' } },
+  },
+  {
+    id: 'take-away-pond', title: 'Take-Away Pond', subtitle: 'Some ducks wander. Some ducks stay.',
+    subject: 'math', category: 'TAKE AWAY & COUNT', age: 'Ages 5-7',
+    stages: ['kindergarten', 'thinkers'], skills: ['subtraction', 'counting remaining objects'],
+    interaction: 'object-manipulation', invitation: 'Move and count ducks', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Pond to 5', description: 'Move the requested ducks to shore, then count those left. Includes zero.' }, growing: { label: 'Pond to 10', description: 'Explore groups up to 10, with reversible moves and an empty pond.' } },
+  },
+  {
+    id: 'grow-garden', title: 'Grow a Little Garden', subtitle: 'Care, wonder, and watch a plant.',
+    subject: 'science', category: 'CARE & OBSERVE', age: 'Ages 3-7 with help',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['plant needs', 'prediction and observation'],
+    interaction: 'experiment', invitation: 'Care for a pretend plant', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Guided garden', description: 'Use a care guide to predict and explore three untimed simulated growth steps.' }, growing: { label: 'Garden predictions', description: 'Predict whether current conditions support growth without the extra guide, then observe and adjust care.' } },
+  },
+  {
+    id: 'float-sink', title: 'Float or Sink Lab', subtitle: 'Make a guess. Try it. Notice what happens.',
+    subject: 'science', category: 'PREDICT & TEST', age: 'Ages 3-7 with help',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['testing predictions', 'material and form'],
+    interaction: 'experiment', invitation: 'Explore a virtual tub', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'With material clues', description: 'Predict and test three specified objects with helpful clues.' }, growing: { label: 'Lab explorer', description: 'Explore six specified materials and forms without the extra clue.' } },
+  },
+  {
+    id: 'toy-shop', title: 'Little Toy Shop', subtitle: 'Count pretend dollars for a toy.',
+    subject: 'money', category: 'EXACT PRETEND PAYMENT', age: 'Ages 5-7',
+    stages: ['kindergarten', 'thinkers'], skills: ['exact quantities', 'whole-dollar prices'],
+    interaction: 'object-manipulation', invitation: 'Pay a pretend price', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Prices to 5', description: 'Add or remove pretend $1 tokens to match prices from $1-$5.' }, growing: { label: 'Prices to 10', description: 'Match prices from $1-$10 exactly. No real money or shopping.' } },
+  },
+  {
+    id: 'can-buy', title: 'Can I Buy It?', subtitle: 'Compare a wallet and a price.',
+    subject: 'money', category: 'ENOUGH OR NOT ENOUGH', age: 'Ages 5-7',
+    stages: ['kindergarten', 'thinkers'], skills: ['quantity comparison', 'equal amounts'],
+    interaction: 'matching', invitation: 'Compare pretend dollars', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Compare to 5', description: 'Use visible tokens and amounts from $0-$5 to compare a wallet with a price.' }, growing: { label: 'Compare to 10', description: 'Compare amounts from $0-$10, including exact prices and an empty wallet.' } },
   },
 ];
 

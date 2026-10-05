@@ -2,6 +2,8 @@
 
 This is a living idea backlog, not a promise to ship 50 games. Keep proposed games out of the playable catalog until their interactions and learning objectives work end to end.
 
+**Current inventory: 17 playable / 33 proposed.** The original seven-game v0.1.0 stays on its original branch. The expansion adds exactly ten games, two in each subject, without building platformers or making the other proposals clickable.
+
 ## Design agreements
 
 - Keep the family pilot local: no accounts, child analytics, ads, uploads, or purchases.
@@ -21,10 +23,29 @@ This is a living idea backlog, not a promise to ship 50 games. Keep proposed gam
 |---|---|---|
 | 1 | Subject/stage filters, catalog metadata, and two modes in the original three games | Playable pilot |
 | 2 | Word Builder Workshop, Sight Word Picnic, Snack-Time Addition, Keep, Give, Count | Playable pilot |
-| 3 | Rainbow Mixer, Grow a Little Garden, Float or Sink Lab | Proposed next candidates |
-| 4 | One short Word Quest or Number-Line Hopper level | Proposed experiment |
+| 3 | Alphabet Garden, Silly Sentence Kitchen, Rainbow Mixer, Pattern Painter, Number Train, Take-Away Pond, Grow a Little Garden, Float or Sink Lab, Little Toy Shop, Can I Buy It? | Playable ten-game expansion |
+| 4 | Consider Number Match, More/Less/Same, or Life-Cycle Sequencer after family feedback | Proposed next candidates |
+| 5 | One short Word Quest or Number-Line Hopper level, only after checking the experiment boundaries below | Proposed experiment |
 
-The first two waves are intentionally small datasets. Expand prompts, vocabulary, and difficulty after observing whether the mechanics make sense to the children.
+The first two waves are intentionally small datasets; the expansion is still a bounded pilot, not a curriculum. Expand prompts, vocabulary, and difficulty after observing whether the mechanics make sense to the children.
+
+## What the expansion actually shipped
+
+- Alphabet Garden covers all 26 English letters in uppercase matching and uppercase/lowercase pair modes; optional speech says letter names, not reviewed phonemes.
+- Sentence Kitchen has four grammatical three-word targets with explicit meaning prompts, undo/removable slots, a guide or distractor mode, and matching original illustrations after solving. Alternate stories, free sentence generation, and a full reading curriculum are not implemented.
+- Rainbow Mixer accepts two equal primary-color scoops. Its explicit model maps red/yellow to orange, yellow/blue to green, red/blue to purple, and same-color pairs to that color. Free discovery and three guided recipes are playable. Real pigments, ratios, white/black paint, and RGB averaging are not simulated.
+- Pattern Painter has three AB units and ABC/AAB/ABB units. Every piece has both a distinct shape and a readable color/shape label; no timer or color-only answer.
+- Number Train uses tap/keyboard carriage ordering in small 1-5 sequences and missing-number questions at the start, middle, and end of 1-10 sequences. Undo is available for ordering; drag-and-drop is unnecessary.
+- Take-Away Pond requires moving the requested ducks before choosing how many remain. Pond/shore moves are reversible; both 1-5 and 1-10 modes include an empty pond.
+- Grow a Little Garden runs three untimed growth observations from seed through flowering plant. Both modes require prediction and observation; gentle adds a care guide. Damp soil and light permit growth in the model, and damp soil cannot receive more water. Real plants take days/weeks and need other conditions: air, nutrients, warmth, and space are explained but not simulated.
+- Float or Sink Lab requires prediction -> test -> recorded observation, with three clue-supported or six less-guided object rounds. Dry cork, solid steel, solid granite, a sealed air-filled ball, solid aluminum without trapped air, and an empty open-side-up aluminum foil boat have specified outcomes in still fresh water. Shape and air change results; this is not a universal "wood/plastic/metal" rule. Changed predictions are discoveries, not errors.
+- Little Toy Shop has every exact whole-dollar price from $1-$5 or $1-$10, with add/remove/undo pretend tokens. Can I Buy It? includes less/equal/more and $0 wallets in both ranges; equal money is enough. Neither asks about family finances or enables real payments.
+
+Live stage metadata recommends scaffolded matching, creative, sequencing, and science exploration for E (adult help with science), and short sentence, subtraction, and money tasks for K/T. All stages shows 17 games; E shows 9, K shows 17, and T shows 16 because the original Letter Friends remains a 3-6 recommendation. These are implementation-based recommendations, not child-tested age claims.
+
+### Implementation-derived refinements (not child observations)
+
+Keep object **form** as well as material in future science datasets; the solid aluminum/empty foil boat contrast is a useful bounded alternative to vague "metal sinks" prompts. Future life-cycle sequencing could reuse the staged plant art without adding a real-time wait. More/Less/Same and Number Match can reuse readable object trays and explicit equality boundaries. Expand original sentence vocabulary only when the illustration can communicate the requested meaning. Review phoneme audio separately before Sound Safari or Blend & Find; letter-name synthesis is not a substitute.
 
 ## 50-game backlog
 
@@ -35,13 +56,13 @@ E = Little Explorers; K = Kindergarten Crew; T = Growing Thinkers. Stages here a
 | # | Game | Stage | Idea / learning objective | State |
 |---|---|---|---|---|
 | 1 | Letter Friends | E, K | Match uppercase shapes or uppercase/lowercase pairs. | Playable |
-| 2 | Alphabet Garden | E, K | Find letter pairs to grow a garden; expand beyond the pilot's six letters. | Proposed |
+| 2 | Alphabet Garden | E, K, T | Match all 26 uppercase shapes or uppercase/lowercase pairs to grow flowers. | Playable |
 | 3 | Sound Safari | K | Match a beginning sound with a pictured object. Use reviewed phoneme audio rather than synthesized letter names. | Proposed |
 | 4 | Rhyme Time | K | Find rhyming picture pairs. | Proposed |
 | 5 | Word Builder Workshop | K, T | Arrange tiles to copy or spell cat, sun, hen, and duck with different levels of support. | Playable |
 | 6 | Blend & Find | K | Blend separate sounds and choose a picture. Needs reviewed phoneme audio. | Proposed |
 | 7 | Sight Word Picnic | K, T | Match six familiar words or complete a sentence with spoken help. | Playable |
-| 8 | Silly Sentence Kitchen | K, T | Arrange word tiles, then see the sentence illustrated. | Proposed |
+| 8 | Silly Sentence Kitchen | K, T | Arrange four original sentences with a guide or distractor, then see matching art. | Playable |
 | 9 | Story Detective | T | Read a tiny original story and answer who, what, or where questions. | Proposed |
 | 10 | Word Quest | T | Explore a gentle platforming level with stopped reading checkpoints. | Proposed |
 
@@ -51,9 +72,9 @@ E = Little Explorers; K = Kindergarten Crew; T = Growing Thinkers. Stages here a
 |---|---|---|---|---|
 | 11 | Coloring Garden | E, K, T | Free-color flower and house pictures, or follow a color recipe. More pictures are future additions. | Playable |
 | 12 | Color Hunt | E | Find and color objects matching a named color. | Proposed |
-| 13 | Rainbow Mixer | E, K | Mix virtual paint and discover colors; explain the mixing model. | Proposed |
+| 13 | Rainbow Mixer | E, K, T | Explore two equal primary-color scoops or follow orange/green/purple recipes in an explicit simplified model. | Playable |
 | 14 | Shape Stamp Studio | E | Make pictures with large shape stamps. | Proposed |
-| 15 | Pattern Painter | K | Finish repeating color and shape patterns. | Proposed |
+| 15 | Pattern Painter | E, K, T | Finish labeled color/shape AB, ABC, AAB, and ABB patterns. | Playable |
 | 16 | Symmetry Butterflies | K, T | Paint one wing and investigate its mirror. | Proposed |
 | 17 | Listen & Color | K | Follow increasingly complex spoken coloring instructions. | Proposed |
 | 18 | Pixel Picture Puzzle | T | Follow a small color grid to reveal a picture. | Proposed |
@@ -68,9 +89,9 @@ E = Little Explorers; K = Kindergarten Crew; T = Growing Thinkers. Stages here a
 | 22 | Number Match | E | Match numerals with groups of objects. | Proposed |
 | 23 | More, Less, Same | E, K | Compare berries, toys, or other groups. | Proposed |
 | 24 | Shape Builders | E | Assemble houses and creatures from shapes. | Proposed |
-| 25 | Number Train | K | Order numbered carriages and find missing numbers. | Proposed |
+| 25 | Number Train | E, K, T | Tap to order small sequences to 5 or find missing numbers in sequences to 10. | Playable |
 | 26 | Snack-Time Addition | K, T | Bring two apple groups together and find totals up to 5 or 10. | Playable |
-| 27 | Take-Away Pond | K | Move ducks away and count what remains. | Proposed |
+| 27 | Take-Away Pond | K, T | Move the requested ducks and count remaining groups to 5 or 10, including zero. | Playable |
 | 28 | Ten-Frame Fireflies | K, T | Explore combinations that fill a ten-frame jar. | Proposed |
 | 29 | Measure the Monsters | K, T | Compare lengths with equal-sized blocks, then introduce rulers. | Proposed |
 | 30 | Number-Line Hopper | T | Move along a number line for addition and subtraction. | Proposed |
@@ -82,8 +103,8 @@ E = Little Explorers; K = Kindergarten Crew; T = Growing Thinkers. Stages here a
 | 31 | Animal Home Match | E | Match familiar animals with suitable habitats. | Proposed |
 | 32 | Weather Wardrobe | E | Choose clothing for different weather; accept reasonable alternatives. | Proposed |
 | 33 | Five Senses Detective | E, K | Explore how senses help us investigate; include accessible alternatives. | Proposed |
-| 34 | Grow a Little Garden | K | Observe how water and light relate to plant growth. | Proposed |
-| 35 | Float or Sink Lab | K | Predict, test, and observe selected objects in a virtual tub. | Proposed |
+| 34 | Grow a Little Garden | E, K, T | Guided or less-guided prediction/care/observation in three explicitly simulated plant-growth steps. | Playable |
+| 35 | Float or Sink Lab | E, K, T | Predict, test, and observe three clue-supported or six specified object forms in a virtual tub. | Playable |
 | 36 | Magnet Explorer | K | Predict and test attraction for specific materials, not all metals. | Proposed |
 | 37 | Life-Cycle Sequencer | K, T | Order butterfly, frog, or plant life-cycle stages. | Proposed |
 | 38 | Shadow Playground | K, T | Move a light and observe shadows. | Proposed |
@@ -96,8 +117,8 @@ E = Little Explorers; K = Kindergarten Crew; T = Growing Thinkers. Stages here a
 |---|---|---|---|---|
 | 41 | Token Jar | E | Add/remove pretend tokens before introducing currency. | Proposed |
 | 42 | Keep, Give, Count | K, T | Start with pretend dollars, move a requested amount, and count what remains. Includes an empty wallet. | Playable |
-| 43 | Little Toy Shop | K | Pay an exact whole-dollar price with pretend tokens. | Proposed |
-| 44 | Can I Buy It? | K | Compare a pretend wallet balance with an item's price. | Proposed |
+| 43 | Little Toy Shop | K, T | Pay exact $1-$5 or $1-$10 prices with reversible pretend tokens. | Playable |
+| 44 | Can I Buy It? | K, T | Compare $0-$5 or $0-$10 wallets and prices, including less/equal/more cases. | Playable |
 | 45 | Save for Something Special | K, T | Add pretend money toward a chosen goal. No daily streaks or real-world earning requirements. | Proposed |
 | 46 | Spend, Save, Share | K, T | Explore multiple ways to divide an amount without a morally preferred answer. | Proposed |
 | 47 | Two-Item Basket | T | Combine two prices to find a total. | Proposed |
