@@ -5,6 +5,7 @@
 
 # Web app build and test output
 dist/
+.wrangler/
 test-results/
 playwright-report/
 *.tsbuildinfo

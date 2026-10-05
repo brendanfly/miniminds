@@ -4,12 +4,12 @@ import { countChoices, countRounds, letterRounds } from '../src/games';
 test('home filters activities and fits the screen', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Little play. Big discoveries.' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(7);
+  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(17);
   await page.getByRole('button', { name: 'Reading', exact: true }).click();
-  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(3);
+  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(5);
   await expect(page.getByRole('button', { name: 'Play Letter Friends' })).toBeVisible();
   await page.getByRole('button', { name: 'All activities' }).click();
-  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(7);
+  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(17);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
