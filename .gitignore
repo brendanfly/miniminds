@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Web app build and test output
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+
 # User-specific files
 *.rsuser
 *.suo
