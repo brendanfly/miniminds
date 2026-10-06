@@ -418,14 +418,14 @@ test('new completed layouts fit 320px and reduced motion removes tub animation',
 });
 
 test('expansion datasets independently match the intended concepts and boundaries', () => {
-  expect(games.filter(game => game.subject === 'reading')).toHaveLength(5);
-  expect(games.filter(game => game.subject === 'coloring')).toHaveLength(3);
-  expect(games.filter(game => game.subject === 'math')).toHaveLength(4);
-  expect(games.filter(game => game.subject === 'science')).toHaveLength(2);
-  expect(games.filter(game => game.subject === 'money')).toHaveLength(3);
-  expect(games.filter(game => game.stages.includes('explorers'))).toHaveLength(9);
-  expect(games.filter(game => game.stages.includes('kindergarten'))).toHaveLength(17);
-  expect(games.filter(game => game.stages.includes('thinkers'))).toHaveLength(16);
+  expect(games.filter(game => game.subject === 'reading')).toHaveLength(7);
+  expect(games.filter(game => game.subject === 'coloring')).toHaveLength(5);
+  expect(games.filter(game => game.subject === 'math')).toHaveLength(6);
+  expect(games.filter(game => game.subject === 'science')).toHaveLength(4);
+  expect(games.filter(game => game.subject === 'money')).toHaveLength(5);
+  expect(games.filter(game => game.stages.includes('explorers'))).toHaveLength(15);
+  expect(games.filter(game => game.stages.includes('kindergarten'))).toHaveLength(27);
+  expect(games.filter(game => game.stages.includes('thinkers'))).toHaveLength(26);
   expect(alphabetRounds.map(task => task.letter).join('')).toBe('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
   for (const task of alphabetRounds) {
     expect(new Set(task.choices).size).toBe(3);

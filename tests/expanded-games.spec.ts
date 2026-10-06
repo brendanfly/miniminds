@@ -26,11 +26,11 @@ test('all subject and stage filters intersect without showing unfinished games',
     }
   }
   await page.getByRole('button', { name: 'Science', exact: true }).click();
-  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(2);
+  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(4);
   await expect(page.locator('.empty-catalog')).toHaveCount(0);
   await page.getByRole('button', { name: 'All activities', exact: true }).click();
   await page.getByRole('button', { name: 'All stages', exact: true }).click();
-  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(17);
+  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(27);
   await expect(page.getByRole('button', { name: 'All stages', exact: true })).toHaveAttribute('aria-pressed', 'true');
 });
 
@@ -48,7 +48,7 @@ test('stage selects a starting mode and filters survive a game visit', async ({ 
   }
   await expect(page.getByRole('button', { name: /^Count flower / })).toHaveCount(3);
   await page.getByRole('button', { name: 'All activities', exact: true }).click();
-  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(2);
+  await expect(page.getByRole('button', { name: /^Play / })).toHaveCount(4);
   await expect(page.getByRole('button', { name: 'Math', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('button', { name: /^Little Explorers/ })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: /^Growing Thinkers/ }).click();
@@ -277,8 +277,8 @@ test('every game and difficulty fits a narrow screen without runtime errors or e
 });
 
 test('catalog and round data enforce stage, range, and answer contracts', () => {
-  expect(new Set(games.map(game => game.id)).size).toBe(17);
-  expect(filterGames('science', 'all')).toHaveLength(2);
+  expect(new Set(games.map(game => game.id)).size).toBe(27);
+  expect(filterGames('science', 'all')).toHaveLength(4);
   for (const game of games) {
     expect(game.stages.length).toBeGreaterThan(0);
     for (const mode of ['gentle', 'growing'] as const) expect(game.modes[mode].label.length).toBeGreaterThan(0);

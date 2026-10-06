@@ -215,6 +215,39 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
   .simulation-note { font-size: 12px; }.science-observation { padding: 14px; }
   .alphabet-plot .big-letter { font-size: 85px; }.seed-soil { max-width: 120px; font-size: 14px; }
 }
+.next-picture { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 22px auto; max-width: 300px; }
+.next-picture > svg { width: 170px; height: 150px; }
+.guide-note { margin: 18px auto; max-width: 650px; padding: 14px; background: #edf2e6; border-radius: 12px; line-height: 1.7; }
+.picture-choices { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 14px; margin: 22px auto; }
+.picture-choices > button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border: 2px solid #bbc9aa; border-radius: 16px; padding: 14px; width: 150px; min-height: 100px; background: #fffdf8; font-size: 17px; }
+.picture-choices > button > svg { width: 100px; height: 90px; }
+.named-swatch { display: inline-block; width: 20px; height: 20px; border: 1px solid #66745d; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+.story-card { display: flex; align-items: center; gap: 18px; max-width: 650px; margin: 20px auto; padding: 20px; background: #f6efdf; border-radius: 18px; text-align: left; }
+.story-card > svg { width: 120px; min-width: 100px; }.story-card p { font-size: 20px; line-height: 1.8; }
+.story-detective .answer-options, .animal-home .answer-options { flex-wrap: wrap; }
+.story-detective .answer-options button, .animal-home .answer-options button, .more-less-same .answer-options button { width: auto; max-width: 100%; min-width: 80px; height: auto; min-height: 64px; padding: 14px; font-size: 17px; }
+.stamp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-width: 450px; margin: 22px auto; }
+.stamp-grid > button { display: flex; flex-direction: column; align-items: center; justify-content: end; min-height: 100px; padding: 8px 2px; gap: 5px; border: 2px dashed #b6c6a7; border-radius: 12px; background: #fffdf8; font-size: 12px; }
+.stamp-grid svg { width: 60px; height: 60px; }.shape-studio .tile-row svg { width: 42px; height: 42px; vertical-align: middle; }
+.object-tray, .token-display { margin: 20px auto; padding: 18px; border: 2px solid #cfdbc2; background: #f4f6ed; border-radius: 18px; max-width: 450px; }
+.comparison-trays { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }.comparison-trays .object-tray { width: 100%; min-width: 0; }
+.berry-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 14px 0; min-height: 50px; }
+.berry { display: block; width: 23px; height: 23px; border-radius: 50%; background: #b2768c; border: 2px solid #855b70; position: relative; }
+.berry::before { content: ''; position: absolute; top: -5px; left: 8px; width: 7px; height: 7px; background: #667e54; border-radius: 2px; }
+.plain-token { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #edc65e; color: #354838; border: 2px solid #ae8e3f; font-size: 15px; }
+.number-guide { font-size: 65px; margin: 20px; font-weight: 700; }
+.sequence-slots { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px auto; }
+.sequence-slots > button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 115px; min-height: 140px; padding: 10px; background: #edf2e6; border: 2px dashed #b6c6a7; border-radius: 12px; font-size: 13px; }
+.sequence-slots svg { width: 80px; height: 70px; }.cycle-choices > button { width: 125px; font-size: 14px; }
+.save-special progress { max-width: 100%; width: 350px; height: 22px; accent-color: #73965d; }
+@media (max-width: 700px) {
+  .story-card { flex-direction: column; padding: 14px; }.story-card p { font-size: 17px; }
+  .picture-choices { gap: 8px; }.picture-choices > button { width: 112px; padding: 10px; font-size: 14px; }.picture-choices > button > svg { width: 85px; height: 75px; }
+  .comparison-trays { gap: 8px; }.object-tray { padding: 12px 6px; }.object-tray > span { font-size: 12px; }
+  .berry-group { gap: 7px; }.berry { width: 19px; height: 19px; }
+  .guide-note { font-size: 14px; }.stamp-grid > button { font-size: 10px; min-height: 88px; }.stamp-grid svg { width: 45px; height: 45px; }
+  .sequence-slots > button { width: 102px; }
+}
 @media (min-width: 1450px) { .app-shell { max-width: 1330px; }.hero { min-height: 475px; }.card-art { height: 225px; } }
 @media (max-width: 960px) {
   .app-shell { padding: 0 32px; }.hero { min-height: 405px; gap: 10px; }.hero h1 { font-size: 46px; }.hero-orbit { right: 20px; width: 230px; height: 230px; top: 40px; }.hero-picture .garden-art { width: 125%; }.art-caption { right: 25px; bottom: 20px; }.game-grid { gap: 15px; }.card-art { height: 182px; }.card-copy { padding: 19px 15px 16px; }.card-copy h3 { font-size: 19px; }.card-copy p { min-height: 36px; }.letter-block { width: 65px; height: 75px; font-size: 58px; }.block-c { width: 52px; height: 59px; font-size: 48px; left: 67%; }.block-face { left: 21px; }.number-preview > span:not(.tiny-spark) { font-size: 95px; }.coloring-preview svg:first-of-type { width: 125px; left: 8%; }.crayon { right: 35px; }.crayon-one { right: 22px; }.coloring-preview svg:nth-of-type(2) { right: 6%; width: 61px; }

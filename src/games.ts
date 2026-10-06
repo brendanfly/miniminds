@@ -5,7 +5,8 @@ export type Category = 'all' | Subject;
 export type Stage = 'explorers' | 'kindergarten' | 'thinkers';
 export type StageFilter = 'all' | Stage;
 export type Difficulty = 'gentle' | 'growing';
-export type ExpansionGameId = 'alphabet-garden' | 'sentence-kitchen' | 'rainbow-mixer' | 'pattern-painter' | 'number-train' | 'take-away-pond' | 'grow-garden' | 'float-sink' | 'toy-shop' | 'can-buy';
+export type NextGameId = 'rhyme-time' | 'story-detective' | 'color-hunt' | 'shape-studio' | 'number-match' | 'more-less-same' | 'animal-home' | 'life-cycle' | 'token-jar' | 'save-special';
+export type ExpansionGameId = 'alphabet-garden' | 'sentence-kitchen' | 'rainbow-mixer' | 'pattern-painter' | 'number-train' | 'take-away-pond' | 'grow-garden' | 'float-sink' | 'toy-shop' | 'can-buy' | NextGameId;
 export type PackGameId = 'word-builder' | 'sight-words' | 'addition' | 'give-count';
 export type GameId = 'coloring' | 'letters' | 'numbers' | PackGameId | ExpansionGameId;
 
@@ -32,6 +33,76 @@ type Game = {
 };
 
 export const games: Game[] = [
+  {
+    id: 'rhyme-time', title: 'Rhyme Time', subtitle: 'Listen for familiar word endings.',
+    subject: 'reading', category: 'WHOLE-WORD RHYMES', age: 'Ages 5-7 with help',
+    stages: ['kindergarten', 'thinkers'], skills: ['rhyming whole words', 'listening and matching'],
+    interaction: 'matching', invitation: 'Find a rhyming pair', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Rhyme guide', description: 'Four familiar illustrated pairs with an ending guide and two choices.' }, growing: { label: 'Rhyme explorer', description: 'Find rhyming words among three labeled pictures without the extra guide.' } },
+  },
+  {
+    id: 'story-detective', title: 'Story Detective', subtitle: 'Tiny stories. Thoughtful discoveries.',
+    subject: 'reading', category: 'WHO, WHAT & WHERE', age: 'Ages 5-7 with help',
+    stages: ['kindergarten', 'thinkers'], skills: ['story comprehension', 'finding evidence'],
+    interaction: 'matching', invitation: 'Explore a little story', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Short story guide', description: 'Listen or read one sentence and answer who, what, or where with two choices.' }, growing: { label: 'Story explorer', description: 'Explore longer original stories with three answer choices.' } },
+  },
+  {
+    id: 'color-hunt', title: 'Color Hunt', subtitle: 'Find a shape. Follow a color clue.',
+    subject: 'coloring', category: 'NAMED COLORS & SHAPES', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['color names', 'following instructions'],
+    interaction: 'coloring', invitation: 'Follow a color hunt', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'One color clue', description: 'Color one named shape and leave the others unpainted.' }, growing: { label: 'Two color clues', description: 'Follow two named shape/color instructions with reversible paints.' } },
+  },
+  {
+    id: 'shape-studio', title: 'Shape Stamp Studio', subtitle: 'Little shapes make your own picture.',
+    subject: 'coloring', category: 'SHAPES & POSITIONS', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['shape recognition', 'spatial position'],
+    interaction: 'object-manipulation', invitation: 'Stamp a shape picture', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Free stamp picture', description: 'Tap a nine-square canvas to create with circles, squares, and triangles.' }, growing: { label: 'Stamp recipes', description: 'Follow three recipes checked against actual shapes and labeled positions.' } },
+  },
+  {
+    id: 'number-match', title: 'Number Match', subtitle: 'A numeral meets a countable group.',
+    subject: 'math', category: 'NUMERALS & QUANTITIES', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['numeral recognition', 'counting correspondence'],
+    interaction: 'matching', invitation: 'Match a berry group', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Groups to 5', description: 'Match numerals to visible berry groups from 1-5 with a counting guide.' }, growing: { label: 'Groups to 10', description: 'Match larger visible groups up to 10 without the extra guide.' } },
+  },
+  {
+    id: 'more-less-same', title: 'More, Less, Same', subtitle: 'Compare two little berry groups.',
+    subject: 'math', category: 'COMPARE QUANTITIES', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['quantity comparison', 'equality and zero'],
+    interaction: 'matching', invitation: 'Compare A with B', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Compare groups to 5', description: 'Use small visible groups and a pairing guide, including equality and zero.' }, growing: { label: 'Compare groups to 10', description: 'Compare quantities to 10, including empty groups and equal amounts.' } },
+  },
+  {
+    id: 'animal-home', title: 'Animal Home Match', subtitle: 'Find a place that suits this animal.',
+    subject: 'science', category: 'SPECIFIED ANIMALS & NEEDS', age: 'Ages 3-7 with help',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['animal needs', 'habitat suitability'],
+    interaction: 'matching', invitation: 'Explore suitable homes', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Animal home guide', description: 'Four specified animal situations with an explanatory guide and two choices.' }, growing: { label: 'Habitat choices', description: 'Choose among three places, then observe why one suits the specified animal.' } },
+  },
+  {
+    id: 'life-cycle', title: 'Life-Cycle Sequencer', subtitle: 'See how growing stages connect.',
+    subject: 'science', category: 'SEQUENCES & CYCLES', age: 'Ages 5-7 with help',
+    stages: ['kindergarten', 'thinkers'], skills: ['life-cycle order', 'observation of change'],
+    interaction: 'sequencing', invitation: 'Connect growing stages', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Cycle sequence guide', description: 'Order four illustrated bean or butterfly stages with a written sequence guide.' }, growing: { label: 'Cycle explorer', description: 'Order less-guided common frog, bean, or butterfly sequences of four or five stages.' } },
+  },
+  {
+    id: 'token-jar', title: 'Token Jar', subtitle: 'Add, remove, and match a little goal.',
+    subject: 'money', category: 'NON-CURRENCY QUANTITIES', age: 'Ages 3-7',
+    stages: ['explorers', 'kindergarten', 'thinkers'], skills: ['quantity adjustment', 'zero and matching'],
+    interaction: 'object-manipulation', invitation: 'Change a pretend jar', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Jar quantities to 5', description: 'Add or remove non-currency tokens to match visible goals from 0-5.' }, growing: { label: 'Jar changes to 10', description: 'Change starting quantities to goals from 0-10, including no change and zero.' } },
+  },
+  {
+    id: 'save-special', title: 'Save for Something Special', subtitle: 'Plan and explore a pretend savings goal.',
+    subject: 'money', category: 'PRETEND GOAL PLANNING', age: 'Ages 5-7',
+    stages: ['kindergarten', 'thinkers'], skills: ['remaining amounts', 'planning contributions'],
+    interaction: 'object-manipulation', invitation: 'Explore pretend savings', defaultDifficulty: 'gentle',
+    modes: { gentle: { label: 'Savings guide to 5', description: 'Plan how many more tokens are needed, then contribute toward goals to 5.' }, growing: { label: 'Savings planner to 10', description: 'Plan and make reversible contributions toward exact goals to 10, including already-reached goals.' } },
+  },
   {
     id: 'coloring', title: 'Coloring Garden', subtitle: 'A little color. A lot of imagination.',
     subject: 'coloring', category: 'CREATE & EXPLORE', age: 'Ages 3-7',

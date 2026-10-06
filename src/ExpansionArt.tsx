@@ -1,6 +1,7 @@
 import { PictureArt } from './Art';
 import type { ExpansionGameId } from './games';
 import type { LabObject } from './ExpansionData';
+import { NextArt, ShapeArt } from './NextArt';
 
 export function PlantArt({ stage }: { stage: number }) {
   return <svg viewBox="0 0 240 220" aria-hidden="true">
@@ -29,6 +30,16 @@ export function LabObjectArt({ object }: { object: LabObject }) {
 
 export function ExpansionCardArt({ game }: { game: ExpansionGameId }) {
   return <div className={`expansion-preview preview-${game}`}>
+    {game === 'rhyme-time' && <><NextArt item="hat" /><span className="preview-caption">cat + hat</span></>}
+    {game === 'story-detective' && <><NextArt item="kite" /><span className="preview-caption">Who? What? Where?</span></>}
+    {game === 'color-hunt' && <><ShapeArt shape="circle" color="#e77b68" /><span className="preview-caption">Color the circle red.</span></>}
+    {game === 'shape-studio' && <><ShapeArt shape="triangle" /><span className="preview-caption">Stamp a little picture</span></>}
+    {game === 'number-match' && <svg viewBox="0 0 260 180" aria-hidden="true"><text x="42" y="119" fontSize="83" fill="#54674e">3</text>{[124, 170, 216].map(x => <g key={x}><circle cx={x} cy="98" r="18" fill="#b2768c" stroke="#855b70" strokeWidth="2" /><path d={`M${x - 3} 78h6v-8h-6Z`} fill="#667e54" /></g>)}</svg>}
+    {game === 'more-less-same' && <><span className="preview-pair">3 = 3</span><span className="preview-caption">More, less, or same?</span></>}
+    {game === 'animal-home' && <><NextArt item="frog" /><span className="preview-caption">A suitable home</span></>}
+    {game === 'life-cycle' && <><NextArt item="caterpillar" /><span className="preview-caption">Growing stages connect</span></>}
+    {game === 'token-jar' && <><NextArt item="jar" /><span className="preview-caption">Pretend tokens, not money</span></>}
+    {game === 'save-special' && <><NextArt item="truck" /><span className="preview-caption">Plan a pretend goal</span></>}
     {game === 'alphabet-garden' && <><PictureArt picture="flower" /><span className="preview-pair">A a</span></>}
     {game === 'sentence-kitchen' && <><PictureArt picture="duck" /><span className="preview-caption">The duck swims.</span></>}
     {game === 'rainbow-mixer' && <svg viewBox="0 0 260 180" aria-hidden="true"><ellipse cx="80" cy="66" rx="35" ry="28" fill="#e77b68" /><ellipse cx="180" cy="66" rx="35" ry="28" fill="#edc65e" /><path d="m80 103 50 45 50-45" stroke="#a79a7a" strokeWidth="5" fill="none" /><ellipse cx="130" cy="143" rx="35" ry="24" fill="#eba45c" /></svg>}

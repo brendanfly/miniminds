@@ -1,0 +1,11 @@
+{
+  "name": "miniminds",
+  "compatibility_date": "2026-10-01",
+  "previews": {},
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    "directory": "./dist"
+  }
+}
